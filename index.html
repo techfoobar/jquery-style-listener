@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>jQuery Style Listener - A plugin to notify you of changes to computed style</title>
+<link rel="stylesheet" href="prettify/prettify.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body onload="prettyPrint()">
+
+<h2 class="main">jQuery <span class="l">S</span><span class="l">t</span><span class="l">y</span><span class="l">l</span><span class="l">e</span> Listener</h2>
+<div class="content">
+    <div class="desc">
+    <strong>jQuery Style Listener</strong>
+    is a jQuery plugin that can monitor changes to specified styles in the elements you attach it to.  
+    It periodically polls for changes in the styles you need monitored and notifies you via a callback function.
+    </div>
+    <div class="desc">Tested on Firefox, Google Chrome and IE7 (and up). Please note that styles that 
+    are not supported by the browser will not be monitorable. For example: <i>opacity</i> will not be
+    monitorable on older versions of IE, similarly <i>-moz-..</i> styles will not be monitorable under IE and so on. 
+    If you have any suggestions, comments or if you have found a bug, please send it to <a href="mailto:vjeleven@gmail.com">vjeleven@gmail.com</a></div>
+    <div class="desc">
+    Try out the demo below to see it in action. The source for the demo is on the right. 
+    </div>
+</div>
+<div class="main"><div class="content">Demonstration</div></div>
+<div class="content">
+	<div class="leftpane">
+		<div id="buttons">
+	        <span>Change:&nbsp;</span>
+	        <a id="visibility">Visibility</a>
+	        <a id="width">Width</a>
+	        <a id="height">Height</a>
+	        <a id="color">Color</a>
+	        <a id="font">Font-Size</a>
+	    </div>
+	    <div id="foo">Demo</div>
+	    <div id="reset">Reset Styles</div>
+	</div>
+	<div class="rightpane">
+	   <pre class="prettyprint">$('#foo').styleListener({
+    
+    // the styles that you want to monitor for changes
+    styles: ['visibility', 'width', 'height', 'color', 'font-size'],
+    
+    // function to be called when a monitored style changes 
+    changed: function(style, newValue, oldValue, element) {
+        alert(style + ' changed from ' + oldValue + ' to ' + newValue);
+    }
+    
+});</pre>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="main contd"><div class="content">Download</div></div>
+<div class="content">
+    <div class="desc">
+    <a href="stylelistener.jquery.js">Download</a> ~ 2.1 Kb - <i>Last Updated: Jan 6, 2013</i><br>
+    <a href="stylelistener.jquery.min.js">Download Minified</a> ~ 1.2 Kb - <i>Last Updated: Jan 6, 2013</i><br>
+    Released under the <a href="http://techfoobar.com/jquery-style-listener/LICENSE.MIT">MIT License</a>
+    </div>
+</div>
+<div class="main contd"><div class="content">Usage</div></div>
+<div class="content">
+    <div class="desc">Once you've downloaded the file, using it is simple. Steps below :-</div>
+    <ol class="desc">
+    <li>Include the script on your page:<br>
+    <pre class="prettyprint full">&lt;script src="/path/to/stylelistener.jquery.js"&gt;&lt;/script&gt;</pre>
+    </li>
+    <li>Attach it to the elements whose styles you want monitored:<br>
+    <pre class="prettyprint full">
+// jquery selector for your element(s)
+// example: "#foo", ".bar", ".bar1, .bar2" etc..
+$('element-selector').styleListener({
+    
+    // the styles that you want to monitor for changes as an array of strings
+    // example: ['visibility', 'width', 'height', 'color', 'font-size']
+    styles: [ ... ],
+    
+    // function to be called when a monitored style changes 
+    changed: function(style, newValue, oldValue, element) {
+        // ... your code ...
+    },
+    
+    // optional - the poll interval (default is 250ms)
+    interval: 1000 // poll once every second
+    
+});</pre>
+    </li>
+    <li>For destroying the instance (and stop polling for changes):<br>
+    <pre class="prettyprint full">$('element-selector').styleListener('destroy');</pre>
+    </li>
+    </ol>
+</div>
+<div class="main contd"><div class="content">Thanks</div></div>
+<div class="content">
+    <div class="desc">
+    Thanks to <a href="http://ejohn.org/">John Resig</a> for creating <a href="http://jquery.com/">jQuery</a>. IMHO, it is as world-changing as a JS library can ever expect to become.<br>
+    Thanks to <a href="https://code.google.com/p/google-code-prettify/">google-code-prettify</a> for the super-simple-to-use-and-customize syntax highlighter and for the Vim Sunburst theme.<br>
+    Thanks to <a href="http://refresh-sf.com/yui/">refresh-sf.com</a> for making <a href="http://developer.yahoo.com/yui/compressor/">YUI Compressor</a> available online.</div>
+</div>
+<div class="main contd"><div class="content">About Me</div></div>
+<div class="content">
+    <div class="desc">
+    I am Vijayakrishnan Krishnan. I'm a web technology enthusiast and have been one for the last 5 years. These days I mainly 
+    deal in JS (jQuery is a given!), CSS and the awesome things we can achieve with them in combo. 
+    I currently work at <a href="http://devicedriven.com">DeviceDriven</a> with an amazing team of 
+    engineers covering JS, CSS on the user side to Groovy on Grails, Spring and Hibernate on the 
+    server side. I'm a sucker for clean code and I believe code that can't be read shouldn't have 
+    been written. I don't design, but I can tell what looks bad.
+    </div>
+    <div class="desc">
+    <a href="http://www.techfoobar.com/about-me">Blog (very inactive!)</a>
+    &nbsp;|&nbsp;
+    <a href="http://stackoverflow.com/users/921204/techfoobar">StackOverflow</a>
+    &nbsp;|&nbsp;
+    <a href="http://www.linkedin.com/in/vjeleven">LinkedIn</a>
+    </div>
+</div>
+<script src="jquery.js"></script>
+<script src="prettify/prettify.js"></script>
+<script src="stylelistener.jquery.min.js"></script>
+<script src="demo.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26067530-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
