@@ -44,15 +44,19 @@
 	}
 	function pollStyles(element, styles, callback, interval) {
 		var poller = setInterval(function() {
-			var currentStyle = 'not-set', i, prevStyle = '';
-			for(i = 0; i < styles.length; i++) {
-				prevStyle = element.data('stlI')[styles[i]];
-				currentStyle = getCurrentStyle(element.get(0))[styles[i]]; 
-				if(prevStyle !== currentStyle) {
-					callback(styles[i], currentStyle, prevStyle, element);
-				}
-				element.data('stlI')[styles[i]] = currentStyle;
-			}
+		      if(element.data('stlI')) {
+		  			var currentStyle = 'not-set', i, prevStyle = '';
+		  			for(i = 0; i < styles.length; i++) {
+		  				prevStyle = element.data('stlI')[styles[i]];
+		  				currentStyle = getCurrentStyle(element.get(0))[styles[i]];
+		  				if(prevStyle !== currentStyle) {
+		  					callback(styles[i], currentStyle, prevStyle, element);
+		  				}
+		  				element.data('stlI')[styles[i]] = currentStyle;
+		  			}
+		      } else {
+		        clearInterval(poller);
+		      }
 		}, interval);
 		element.data('stliT', poller);
 	}
